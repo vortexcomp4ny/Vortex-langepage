@@ -156,7 +156,6 @@ export default function Pricing() {
                   <span className="plan-card__price">
                     {plan.price.toLocaleString('pt-BR')}
                   </span>
-                  <span className="plan-card__period">/mês</span>
                 </div>
               ) : (
                 <div className="plan-card__price-row">
