@@ -10,7 +10,7 @@ const STEPS = [
   },
   {
     title: 'Diagnóstico',
-    desc: 'Mapeamos os gargalos reais — criativos, páginas, segmentação ou oferta — com dados, não chutes.',
+    desc: 'Mapeamos os gargalos reais: criativos, páginas, segmentação ou oferta, com dados, não chutes.',
     icon: '/search.png',
     tilt: 'rotateY(12deg) rotateX(-6deg)',
   },
@@ -417,7 +417,7 @@ export default function HowWeWork() {
       <div className="waskee-process__inner">
         <div className="waskee-process__header">
           <span className="waskee-process__label">COMO FUNCIONA</span>
-          <h2 className="waskee-process__title">Do cadastro à venda — simples assim</h2>
+          <h2 className="waskee-process__title">Do cadastro à venda simples assim</h2>
         </div>
 
         <div className="waskee-process__viewport" aria-label="Processo">
