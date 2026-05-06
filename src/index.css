@@ -992,63 +992,24 @@ button { font-family: inherit; cursor: none; }
 
 /* Card */
 .team-card {
-  perspective: 1000px;
-}
-
-.team-card__inner {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  transform-style: preserve-3d;
-  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-
-.team-card:hover .team-card__inner {
-  transform: rotateY(180deg);
-}
-
-.team-card__front,
-.team-card__back-face {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.team-card__front {
+  border: none;
+  border-radius: 0;
   overflow: hidden;
   background: var(--panel);
+  transition: transform 0.3s;
 }
 
-.team-card__back-face {
-  position: absolute;
-  inset: 0;
-  transform: rotateY(180deg);
-  background: linear-gradient(160deg, rgba(91, 33, 182, 0.22) 0%, rgba(91, 33, 182, 0.08) 100%);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(91, 33, 182, 0.45);
-  box-shadow: inset 0 0 40px rgba(91, 33, 182, 0.12), var(--glow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 32px 24px;
-  text-align: center;
+.team-card:hover {
+  transform: translateY(-6px);
 }
 
 /* Área da foto — grande */
 .team-card__photo-wrap {
   position: relative;
   width: 100%;
-  flex: 1;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--black);
-}
-
-.team-card__front {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .team-card__photo-wrap::after {
@@ -1130,38 +1091,6 @@ button { font-family: inherit; cursor: none; }
   font-size: 13px;
   color: var(--muted);
   margin-top: 4px;
-}
-
-/* ── back face content ── */
-.team-card__back-avatar {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top center;
-  border: 2px solid rgba(91, 33, 182, 0.6);
-  box-shadow: 0 0 18px rgba(91, 33, 182, 0.4);
-}
-
-.team-card__back-name {
-  font-family: var(--font-head);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--white);
-}
-
-.team-card__back-role {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--mint);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.team-card__back-bio {
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--zinc300);
-  max-width: 220px;
 }
 
 /* Faixa de cultura */

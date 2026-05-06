@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import TiltCard from './TiltCard';
 
 const MEMBERS = [
   {
@@ -74,47 +73,31 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="team__grid tilt-scene">
-          {MEMBERS.map(({ name, role, img, initials, color, bio }, i) => (
-            <TiltCard
+        <div className="team__grid">
+          {MEMBERS.map(({ name, role, img, initials, color }, i) => (
+            <article
               key={name}
               ref={(el) => { cardsRef.current[i] = el; }}
               className="team-card"
-              tiltOptions={{ max: 14, scale: 1.02 }}
             >
-              <div className="team-card__inner">
-                {/* Frente */}
-                <div className="team-card__front">
-                  <div className="team-card__photo-wrap">
-                    {img ? (
-                      <img src={img} alt={name} className="team-card__photo" draggable="false" />
-                    ) : (
-                      <div
-                        className="team-card__avatar"
-                        style={{ background: `linear-gradient(135deg, ${color}55, ${color}22)`, borderColor: `${color}44` }}
-                      >
-                        <span className="team-card__initials" style={{ color }}>{initials}</span>
-                      </div>
-                    )}
-                    <div className="team-card__role-tag">{role}</div>
+              <div className="team-card__photo-wrap">
+                {img ? (
+                  <img src={img} alt={name} className="team-card__photo" draggable="false" />
+                ) : (
+                  <div
+                    className="team-card__avatar"
+                    style={{ background: `linear-gradient(135deg, ${color}55, ${color}22)`, borderColor: `${color}44` }}
+                  >
+                    <span className="team-card__initials" style={{ color }}>{initials}</span>
                   </div>
-                  <div className="team-card__info">
-                    <h3 className="team-card__name">{name}</h3>
-                    <p className="team-card__role">{role}</p>
-                  </div>
-                </div>
-
-                {/* Verso */}
-                <div className="team-card__back-face">
-                  {img && (
-                    <img src={img} alt={name} className="team-card__back-avatar" draggable="false" />
-                  )}
-                  <p className="team-card__back-name">{name}</p>
-                  <p className="team-card__back-role">{role}</p>
-                  <p className="team-card__back-bio">{bio}</p>
-                </div>
+                )}
+                <div className="team-card__role-tag">{role}</div>
               </div>
-            </TiltCard>
+              <div className="team-card__info">
+                <h3 className="team-card__name">{name}</h3>
+                <p className="team-card__role">{role}</p>
+              </div>
+            </article>
           ))}
         </div>
 
