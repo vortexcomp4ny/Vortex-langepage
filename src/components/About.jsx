@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ScrambleOnView from './ScrambleOnView';
 
 const TAGS = [
   'Meta Ads', 'Google Ads', 'TikTok Ads',
@@ -67,7 +66,7 @@ export default function About() {
           <div ref={leftRef}>
             <span className="eyebrow">Sobre a Vortex</span>
             <h2 className="section-title">
-              <ScrambleOnView text="Jogamos xadrez enquanto outros jogam damas." duration={1000} />
+              Jogamos xadrez enquanto outros jogam damas.
             </h2>
             <p className="section-desc">
               Somos uma equipe obsessiva por resultado. Cada decisão parte de

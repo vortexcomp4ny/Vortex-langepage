@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ScrambleOnView from './ScrambleOnView';
 
 const STEPS = [
   {
@@ -58,7 +57,7 @@ export default function HowWeWork() {
         <div className="how__header">
           <span className="eyebrow">Como trabalhamos</span>
           <h2 className="section-title">
-            <ScrambleOnView text="Um método construído para gerar resultado desde a primeira semana." duration={1200} />
+            Um método construído para gerar resultado desde a primeira semana.
           </h2>
           <p className="section-desc">
             Cada etapa elimina desperdício e cria uma operação de crescimento
