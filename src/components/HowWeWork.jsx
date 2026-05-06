@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
 
 const STEPS = [
   {
@@ -65,16 +66,17 @@ export default function HowWeWork() {
           </p>
         </div>
 
-        <div className="how__steps">
+        <div className="how__steps tilt-scene">
           {STEPS.map(({ num, title, desc }, i) => (
             <div
               key={num}
               ref={(el) => (stepsRef.current[i] = el)}
-              className="how-step"
             >
-              <span className="how-step__num" aria-hidden="true">{num}</span>
-              <h3 className="how-step__title">{title}</h3>
-              <p className="how-step__desc">{desc}</p>
+              <TiltCard className="how-step" tiltOptions={{ max: 16, scale: 1.03 }}>
+                <span className="how-step__num" aria-hidden="true">{num}</span>
+                <h3 className="how-step__title">{title}</h3>
+                <p className="how-step__desc">{desc}</p>
+              </TiltCard>
             </div>
           ))}
         </div>

@@ -232,6 +232,35 @@ button { font-family: inherit; cursor: none; }
 .btn:hover .arrow-upright { transform: translate(3px, -3px); }
 
 /* ────────────────────────────────────────
+   3-D TILT CARD
+──────────────────────────────────────── */
+.tilt-scene {
+  perspective: 900px;
+}
+
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Glare highlight that follows the cursor */
+.tilt-card__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  top: 0; left: 0;
+  z-index: 10;
+}
+
+/* ────────────────────────────────────────
    CURSOR
 ──────────────────────────────────────── */
 .cursor-dot {
@@ -913,6 +942,7 @@ button { font-family: inherit; cursor: none; }
 .how-step {
   background: var(--black);
   padding: 36px 28px;
+  border-radius: 12px;
   transition: background 0.3s;
 }
 

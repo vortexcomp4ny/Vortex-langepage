@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,12 +94,13 @@ export default function Services() {
           </p>
         </div>
 
-        <div ref={gridRef} className="services__grid">
+        <div ref={gridRef} className="services__grid tilt-scene">
           {SERVICES.map(({ Icon, title, desc, tags, backDesc }, i) => (
-            <article
+            <TiltCard
               key={title}
               ref={(el) => (cardsRef.current[i] = el)}
               className="service-card"
+              tiltOptions={{ max: 14, scale: 1.02 }}
             >
               <div className="service-card__inner">
                 {/* Frente */}
@@ -125,7 +127,7 @@ export default function Services() {
                   </a>
                 </div>
               </div>
-            </article>
+            </TiltCard>
           ))}
         </div>
       </div>
