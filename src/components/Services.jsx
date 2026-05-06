@@ -100,10 +100,10 @@ export default function Services() {
               key={title}
               ref={(el) => (cardsRef.current[i] = el)}
               className="service-card"
+              style={{ '--service-delay': `${i * 0.14}s` }}
               tiltOptions={{ max: 14, scale: 1.02 }}
             >
               <div className="service-card__inner">
-                {/* Frente */}
                 <div className="service-card__front">
                   <div className="service-card__icon"><Icon /></div>
                   <h3 className="service-card__title">{title}</h3>
@@ -115,7 +115,6 @@ export default function Services() {
                   </div>
                 </div>
 
-                {/* Verso */}
                 <div className="service-card__back">
                   <p className="service-card__back-title">{title}</p>
                   <p className="service-card__back-desc">{backDesc}</p>
