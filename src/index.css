@@ -246,14 +246,7 @@ button { font-family: inherit; cursor: none; }
 }
 
 .cursor-ring {
-  position: fixed;
-  top: 0; left: 0;
-  width: 34px; height: 34px;
-  border: 1.5px solid rgba(91, 33, 182, 0.55);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  will-change: transform;
+  display: none;
 }
 
 @media (max-width: 768px) {
