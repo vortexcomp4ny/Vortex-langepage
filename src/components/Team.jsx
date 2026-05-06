@@ -74,12 +74,13 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="team__grid">
+        <div className="team__grid tilt-scene">
           {MEMBERS.map(({ name, role, img, initials, color, bio }, i) => (
-            <article
+            <TiltCard
               key={name}
               ref={(el) => { cardsRef.current[i] = el; }}
               className="team-card"
+              tiltOptions={{ max: 14, scale: 1.02 }}
             >
               <div className="team-card__inner">
                 {/* Frente */}
@@ -113,7 +114,7 @@ export default function Team() {
                   <p className="team-card__back-bio">{bio}</p>
                 </div>
               </div>
-            </article>
+            </TiltCard>
           ))}
         </div>
 
