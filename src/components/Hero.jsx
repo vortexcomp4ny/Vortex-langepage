@@ -52,7 +52,7 @@ export default function Hero() {
       <div className="hero__card-outer">
         <div ref={cardRef} className="hero__card">
           <video className="hero__video" autoPlay muted loop playsInline>
-            <source src="/videos/12297197_1920_1080_30fps.mp4" type="video/mp4" />
+            <source src="https://djqhpvmdlnnnspyarexn.supabase.co/storage/v1/object/public/Videos/Vortex.mp4" type="video/mp4" />
           </video>
 
           <div className="hero__overlay" aria-hidden="true" />
