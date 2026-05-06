@@ -2409,6 +2409,12 @@ button { font-family: inherit; cursor: none; }
   margin-bottom: 24px;
 }
 
+.plan-card__price--custom {
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
 /* CTA */
 .plan-card__cta {
   display: inline-flex;

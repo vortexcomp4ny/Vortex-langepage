@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -10,7 +10,7 @@ const PLANS = [
     name: 'Start',
     tag: null,
     desc: 'Para negócios que querem começar a escalar com método e estrutura.',
-    price: { monthly: 2490, annual: 1990 },
+    price: 450,
     cta: 'Começar agora',
     accent: '#0d9488',
     accentRgb: '13,148,136',
@@ -32,7 +32,7 @@ const PLANS = [
     name: 'Growth',
     tag: 'Mais popular',
     desc: 'Para marcas que já vendem e querem multiplicar os resultados com consistência.',
-    price: { monthly: 4990, annual: 3990 },
+    price: 1500,
     cta: 'Quero escalar agora',
     accent: '#7c3aed',
     accentRgb: '124,58,237',
@@ -54,7 +54,7 @@ const PLANS = [
     name: 'Scale',
     tag: 'Full operação',
     desc: 'Operação completa para quem precisa de velocidade, dados e escala sem limite.',
-    price: { monthly: 9900, annual: 7900 },
+    price: null,
     cta: 'Falar com o time',
     accent: '#86198f',
     accentRgb: '134,25,143',
@@ -92,10 +92,8 @@ function Cross() {
 }
 
 export default function Pricing() {
-  const [annual, setAnnual] = useState(false);
   const sectionRef = useRef(null);
   const cardsRef   = useRef([]);
-  const pricesRef  = useRef([]);
 
   /* Scroll entrance */
   useEffect(() => {
@@ -115,21 +113,6 @@ export default function Pricing() {
     return () => ctx.revert();
   }, []);
 
-  /* Price flip */
-  const toggleBilling = () => {
-    const prices = pricesRef.current.filter(Boolean);
-    gsap.to(prices, {
-      y: -8, opacity: 0, duration: 0.14, stagger: 0.04,
-      onComplete: () => {
-        setAnnual(v => !v);
-        gsap.fromTo(prices,
-          { y: 8, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.22, stagger: 0.04, ease: 'power2.out' }
-        );
-      },
-    });
-  };
-
   return (
     <section id="planos" className="pricing section" ref={sectionRef}>
       <div className="container">
@@ -144,22 +127,6 @@ export default function Pricing() {
             Preço transparente, sem fidelidade obrigatória e sem surpresas na fatura.
           </p>
 
-          {/* Billing toggle */}
-          <div className="pricing__toggle">
-            <span className={`pricing__toggle-opt${!annual ? ' active' : ''}`}>Mensal</span>
-            <button
-              className={`pricing__switch${annual ? ' on' : ''}`}
-              onClick={toggleBilling}
-              aria-pressed={annual}
-              aria-label="Cobrança anual"
-            >
-              <span />
-            </button>
-            <span className={`pricing__toggle-opt${annual ? ' active' : ''}`}>
-              Anual
-              <span className="pricing__save">−20%</span>
-            </span>
-          </div>
         </div>
 
         {/* Cards grid */}
@@ -183,17 +150,18 @@ export default function Pricing() {
               <p className="plan-card__desc">{plan.desc}</p>
 
               {/* Price */}
-              <div className="plan-card__price-row">
-                <span className="plan-card__currency">R$</span>
-                <span className="plan-card__price" ref={el => (pricesRef.current[i] = el)}>
-                  {(annual ? plan.price.annual : plan.price.monthly).toLocaleString('pt-BR')}
-                </span>
-                <span className="plan-card__period">/mês</span>
-              </div>
-              {annual && (
-                <p className="plan-card__annual">
-                  Cobrado anualmente · R$ {(plan.price.annual * 12).toLocaleString('pt-BR')}/ano
-                </p>
+              {plan.price !== null ? (
+                <div className="plan-card__price-row">
+                  <span className="plan-card__currency">R$</span>
+                  <span className="plan-card__price">
+                    {plan.price.toLocaleString('pt-BR')}
+                  </span>
+                  <span className="plan-card__period">/mês</span>
+                </div>
+              ) : (
+                <div className="plan-card__price-row">
+                  <span className="plan-card__price plan-card__price--custom">A negociar</span>
+                </div>
               )}
 
               {/* CTA button */}
