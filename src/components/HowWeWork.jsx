@@ -59,6 +59,31 @@ export default function HowWeWork() {
     return () => ctx.revert();
   }, []);
 
+  // Mobile scroll-highlight: mark the step most centered in the viewport
+  useEffect(() => {
+    const isMobile = () => window.innerWidth <= 760;
+    if (!isMobile()) return;
+
+    const steps = sectionRef.current?.querySelectorAll('.waskee-process__step');
+    if (!steps?.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('wp-step--active');
+          } else {
+            entry.target.classList.remove('wp-step--active');
+          }
+        });
+      },
+      { threshold: 0.55 },
+    );
+
+    steps.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section ref={sectionRef} id="como-funciona" className="waskee-process">
       <style>{`
@@ -338,6 +363,32 @@ export default function HowWeWork() {
           .waskee-process__desc {
             max-width: 100%;
             font-size: 12px;
+          }
+
+          /* ── destaque ao rolar no celular ── */
+          .waskee-process__step {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            opacity: 0.45;
+          }
+
+          .waskee-process__step.wp-step--active {
+            opacity: 1;
+            transform: translateX(6px) !important;
+          }
+
+          .waskee-process__step.wp-step--active .waskee-process__icon img {
+            filter: drop-shadow(0 16px 32px rgba(124, 58, 237, 0.55)) !important;
+            transform: scale(1.12);
+          }
+
+          .waskee-process__step.wp-step--active .waskee-process__step-title {
+            font-size: 17px;
+            color: #fff;
+          }
+
+          .waskee-process__step.wp-step--active .waskee-process__desc {
+            font-size: 13px;
+            color: #c4c4cc;
           }
         }
 
