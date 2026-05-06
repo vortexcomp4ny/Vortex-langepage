@@ -1,119 +1,63 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-/*
-  Para adicionar vídeos reais:
-  substitua `video: null` por `video: '/videos/nome.mp4'`
-  e `poster: null` por `poster: '/imagens/thumb.jpg'`
-*/
 const TESTIMONIALS = [
-  {
-    id: 1,
-    name: 'Marina Costa',
-    company: 'Lumi Beauty',
-    result: '+142% em vendas',
-    video: null,
-    poster: null,
-    gradient: 'linear-gradient(160deg, #3b0764 0%, #1e1b4b 60%, #0f172a 100%)',
-  },
-  {
-    id: 2,
-    name: 'Rafael Nunes',
-    company: 'Casa Norte',
-    result: '3.6x ROAS',
-    video: null,
-    poster: null,
-    gradient: 'linear-gradient(160deg, #064e3b 0%, #1e3a5f 60%, #0f172a 100%)',
-  },
-  {
-    id: 3,
-    name: 'Bianca Torres',
-    company: 'FitCore',
-    result: '-31% CPA',
-    video: null,
-    poster: null,
-    gradient: 'linear-gradient(160deg, #4a044e 0%, #2d1b69 60%, #0f172a 100%)',
-  },
-  {
-    id: 4,
-    name: 'Thiago Mendes',
-    company: 'UrbanStore',
-    result: 'R$ 2M em 90 dias',
-    video: null,
-    poster: null,
-    gradient: 'linear-gradient(160deg, #1e3a5f 0%, #3b0764 60%, #0f172a 100%)',
-  },
-  {
-    id: 5,
-    name: 'Carla Dias',
-    company: 'NutriLife',
-    result: '4.1x ROAS',
-    video: null,
-    poster: null,
-    gradient: 'linear-gradient(160deg, #0f4c75 0%, #1b262c 60%, #0f172a 100%)',
-  },
+  { id: 1, name: 'Marina Costa',   company: 'Lumi Beauty',  result: '+142% em vendas', video: null, poster: null },
+  { id: 2, name: 'Rafael Nunes',   company: 'Casa Norte',   result: '3.6x ROAS',       video: null, poster: null },
+  { id: 3, name: 'Bianca Torres',  company: 'FitCore',      result: '-31% CPA',         video: null, poster: null },
+  { id: 4, name: 'Thiago Mendes',  company: 'UrbanStore',   result: 'R$ 2M em 90 dias', video: null, poster: null },
+  { id: 5, name: 'Carla Dias',     company: 'NutriLife',    result: '4.1x ROAS',        video: null, poster: null },
+  { id: 6, name: 'Lucas Ferreira', company: 'TechFlow',     result: '+89% leads',       video: null, poster: null },
+  { id: 7, name: 'Juliana Melo',   company: 'Glow Studio',  result: '2.8x ROAS',        video: null, poster: null },
 ];
 
 function PlayIcon() {
   return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="23" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-      <circle cx="24" cy="24" r="23" fill="rgba(255,255,255,0.08)" />
+    <svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="23" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+      <circle cx="24" cy="24" r="23" fill="rgba(255,255,255,0.06)" />
       <path d="M20 16l16 8-16 8V16z" fill="white" />
     </svg>
   );
 }
 
 export default function VideoCarousel() {
-  const [active, setActive]   = useState(0);
-  const [playing, setPlaying] = useState(false);
+  const [page, setPage]     = useState(0);
+  const [playing, setPlaying] = useState({});
   const trackRef  = useRef(null);
-  const sectionRef = useRef(null);
-  const videoRefs = useRef([]);
-  const total = TESTIMONIALS.length;
+  const videoRefs = useRef({});
 
-  /* Entrada da seção */
-  useEffect(() => {
-    gsap.from(sectionRef.current, {
-      scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-      opacity: 0, y: 40, duration: 0.9, ease: 'power3.out',
-    });
-  }, []);
+  const total     = TESTIMONIALS.length;
+  const perPage   = 3;
+  const maxPage   = total - perPage;
 
-  /* Animação de slide ao trocar */
   const goTo = (next) => {
-    if (next === active) return;
-    const dir = next > active ? 1 : -1;
-
-    setPlaying(false);
-    videoRefs.current.forEach(v => v?.pause?.());
-
+    if (next === page) return;
+    const dir = next > page ? 1 : -1;
     gsap.fromTo(trackRef.current,
-      { x: dir * 40, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }
+      { x: dir * 80, opacity: 0.5 },
+      { x: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }
     );
-    setActive(next);
+    // pause all videos
+    Object.values(videoRefs.current).forEach(v => v?.pause?.());
+    setPlaying({});
+    setPage(next);
   };
 
-  const prev = () => goTo((active - 1 + total) % total);
-  const next = () => goTo((active + 1) % total);
+  const prev = () => goTo(Math.max(0, page - 1));
+  const next = () => goTo(Math.min(maxPage, page + 1));
 
-  const togglePlay = () => {
-    const vid = videoRefs.current[active];
+  const togglePlay = (id) => {
+    const vid = videoRefs.current[id];
     if (!vid) return;
-    if (playing) { vid.pause(); setPlaying(false); }
-    else         { vid.play();  setPlaying(true);  }
+    if (playing[id]) { vid.pause(); setPlaying(p => ({ ...p, [id]: false })); }
+    else             { vid.play();  setPlaying(p => ({ ...p, [id]: true  })); }
   };
 
-  /* Visible indices: prev, active, next (circular) */
-  const indices = [
-    (active - 1 + total) % total,
-    active,
-    (active + 1) % total,
-  ];
+  const visible = TESTIMONIALS.slice(page, page + perPage);
 
   return (
-    <section id="avaliacoes" className="vc-section section" ref={sectionRef}>
+    <section id="avaliacoes" className="vc-section section">
       <div className="container">
         <div className="vc-header">
           <span className="eyebrow">Avaliações</span>
@@ -124,96 +68,76 @@ export default function VideoCarousel() {
         </div>
 
         <div className="vc-stage">
-          {/* Seta esquerda */}
-          <button className="vc-arrow vc-arrow--prev" onClick={prev} aria-label="Anterior">
+          <button
+            className="vc-arrow vc-arrow--prev"
+            onClick={prev}
+            disabled={page === 0}
+            aria-label="Anterior"
+          >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <path d="M14 5l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
 
-          {/* Stories */}
           <div className="vc-track" ref={trackRef}>
-            {indices.map((idx, pos) => {
-              const t   = TESTIMONIALS[idx];
-              const isActive = pos === 1;
+            {visible.map((t) => (
+              <div key={t.id} className="vc-card">
+                {/* mídia */}
+                {t.video ? (
+                  <video
+                    ref={el => (videoRefs.current[t.id] = el)}
+                    src={t.video}
+                    poster={t.poster}
+                    playsInline
+                    loop
+                    className="vc-card__video"
+                  />
+                ) : (
+                  <div className="vc-card__placeholder" />
+                )}
 
-              return (
-                <div
-                  key={t.id}
-                  className={`vc-story${isActive ? ' vc-story--active' : ' vc-story--side'}`}
-                  onClick={() => !isActive && goTo(idx)}
-                  style={{ '--story-gradient': t.gradient }}
+                {/* overlay escuro no rodapé */}
+                <div className="vc-card__overlay" />
+
+                {/* botão play */}
+                <button
+                  className="vc-card__play"
+                  onClick={() => togglePlay(t.id)}
+                  aria-label="Play/Pause"
                 >
-                  {/* Vídeo ou placeholder */}
-                  {t.video ? (
-                    <video
-                      ref={el => (videoRefs.current[idx] = el)}
-                      src={t.video}
-                      poster={t.poster}
-                      playsInline
-                      loop
-                      className="vc-story__video"
-                    />
-                  ) : (
-                    <div className="vc-story__placeholder" style={{ background: t.gradient }} />
-                  )}
+                  <PlayIcon />
+                </button>
 
-                  {/* Overlay */}
-                  <div className="vc-story__overlay" />
-
-                  {/* Botão play (só no ativo com vídeo real) */}
-                  {isActive && t.video && (
-                    <button className="vc-story__play" onClick={togglePlay} aria-label="Play/Pause">
-                      <PlayIcon />
-                    </button>
-                  )}
-
-                  {/* Ícone play decorativo no placeholder */}
-                  {isActive && !t.video && (
-                    <div className="vc-story__play-dec">
-                      <PlayIcon />
-                    </div>
-                  )}
-
-                  {/* Info */}
-                  <div className="vc-story__info">
-                    <div className="vc-story__result">{t.result}</div>
-                    <div className="vc-story__name">{t.name}</div>
-                    <div className="vc-story__company">{t.company}</div>
-                  </div>
-
-                  {/* Barra de progresso no ativo */}
-                  {isActive && (
-                    <div className="vc-story__progress">
-                      {TESTIMONIALS.map((_, i) => (
-                        <div
-                          key={i}
-                          className={`vc-story__progress-bar${i === active ? ' active' : i < active ? ' done' : ''}`}
-                        />
-                      ))}
-                    </div>
-                  )}
+                {/* info */}
+                <div className="vc-card__info">
+                  <span className="vc-card__result">{t.result}</span>
+                  <span className="vc-card__name">{t.name}</span>
+                  <span className="vc-card__company">{t.company}</span>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
-          {/* Seta direita */}
-          <button className="vc-arrow vc-arrow--next" onClick={next} aria-label="Próximo">
+          <button
+            className="vc-arrow vc-arrow--next"
+            onClick={next}
+            disabled={page >= maxPage}
+            aria-label="Próximo"
+          >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <path d="M8 5l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
         </div>
 
-        {/* Dots */}
+        {/* dots */}
         <div className="vc-dots">
-          {TESTIMONIALS.map((_, i) => (
+          {Array.from({ length: maxPage + 1 }).map((_, i) => (
             <button
               key={i}
-              className={`vc-dot${i === active ? ' vc-dot--active' : ''}`}
+              className={`vc-dot${i === page ? ' vc-dot--active' : ''}`}
               onClick={() => goTo(i)}
-              aria-label={`Ir para avaliação ${i + 1}`}
+              aria-label={`Página ${i + 1}`}
             />
           ))}
         </div>
