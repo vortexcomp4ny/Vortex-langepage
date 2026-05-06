@@ -1,5 +1,6 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import useScramble from '../hooks/useScramble';
 
 export default function Hero() {
   const cardRef = useRef(null);
@@ -7,6 +8,9 @@ export default function Hero() {
   const line2Ref = useRef(null);
   const subRef = useRef(null);
   const actionsRef = useRef(null);
+
+  const scramble1Ref = useScramble('Transformamos verba de mídia em', { duration: 1400, delay: 400 });
+  const scramble2Ref = useScramble('receita previsível.', { duration: 1100, delay: 700 });
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -65,10 +69,10 @@ export default function Hero() {
 
             <h1 className="hero__title">
               <span ref={line1Ref} className="hero__title-line">
-                Transformamos verba de mídia em
+                <span ref={scramble1Ref}>Transformamos verba de mídia em</span>
               </span>
               <em ref={line2Ref} className="hero__title-line hero__title-em">
-                receita previsível.
+                <span ref={scramble2Ref}>receita previsível.</span>
               </em>
             </h1>
 

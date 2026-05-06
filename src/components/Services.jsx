@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrambleOnView from './ScrambleOnView';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,7 +83,7 @@ export default function Services() {
         <div className="services__header">
           <span className="eyebrow">Serviços</span>
           <h2 className="section-title">
-            Três frentes conectadas para vender mais com menos desperdício.
+            <ScrambleOnView text="Três frentes conectadas para vender mais com menos desperdício." duration={1200} />
           </h2>
           <p className="section-desc">
             Cada disciplina conversa com a outra: mídia informa criativo,
