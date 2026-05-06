@@ -232,20 +232,6 @@ button { font-family: inherit; cursor: none; }
 .btn:hover .arrow-upright { transform: translate(3px, -3px); }
 
 /* ────────────────────────────────────────
-   TYPEWRITER
-──────────────────────────────────────── */
-.typewriter-cursor {
-  display: inline-block;
-  margin-left: 2px;
-  color: var(--violet);
-  font-weight: 300;
-  transition: opacity 0.1s;
-  text-shadow:
-    0 0 8px rgba(109, 40, 217, 0.9),
-    0 0 20px rgba(109, 40, 217, 0.5);
-}
-
-/* ────────────────────────────────────────
    CURSOR
 ──────────────────────────────────────── */
 .cursor-dot {
@@ -731,17 +717,50 @@ button { font-family: inherit; cursor: none; }
   .services__grid { grid-template-columns: 1fr; }
 }
 
+/* ── flip wrapper ── */
 .service-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 36px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  transition: border-color 0.3s, box-shadow 0.3s;
+  perspective: 1000px;
+  min-height: 280px;
 }
 
-.service-card:hover {
-  border-color: rgba(91, 33, 182, 0.5);
+.service-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.service-card:hover .service-card__inner {
+  transform: rotateY(180deg);
+}
+
+/* ── faces ── */
+.service-card__front,
+.service-card__back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 36px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.service-card__front {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+}
+
+.service-card__back {
+  border: 1px solid rgba(91, 33, 182, 0.45);
+  background: linear-gradient(160deg, rgba(91, 33, 182, 0.18), rgba(13, 148, 136, 0.08));
   box-shadow: var(--glow);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
 .service-card__icon {
@@ -784,6 +803,37 @@ button { font-family: inherit; cursor: none; }
   border-radius: 100px;
   color: #a1a1aa;
   letter-spacing: 0.04em;
+}
+
+/* ── back face content ── */
+.service-card__back-title {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.service-card__back-desc {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--zinc300);
+  flex: 1;
+}
+
+.service-card__back-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mint);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: gap 0.2s;
+}
+
+.service-card__back-cta:hover {
+  gap: 14px;
 }
 
 /* ────────────────────────────────────────
@@ -923,24 +973,60 @@ button { font-family: inherit; cursor: none; }
 
 /* Card */
 .team-card {
-  border: none;
-  border-radius: 0;
-  overflow: hidden;
-  background: var(--panel);
-  transition: transform 0.3s;
+  perspective: 1000px;
 }
 
-.team-card:hover {
-  transform: translateY(-6px);
+.team-card__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.team-card:hover .team-card__inner {
+  transform: rotateY(180deg);
+}
+
+.team-card__front,
+.team-card__back-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.team-card__front {
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.team-card__back-face {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, rgba(91, 33, 182, 0.22), rgba(13, 148, 136, 0.1));
+  border: 1px solid rgba(91, 33, 182, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 24px;
+  text-align: center;
 }
 
 /* Área da foto — grande */
 .team-card__photo-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  flex: 1;
   overflow: hidden;
   background: var(--black);
+}
+
+.team-card__front {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .team-card__photo-wrap::after {
@@ -1022,6 +1108,38 @@ button { font-family: inherit; cursor: none; }
   font-size: 13px;
   color: var(--muted);
   margin-top: 4px;
+}
+
+/* ── back face content ── */
+.team-card__back-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 2px solid rgba(91, 33, 182, 0.6);
+  box-shadow: 0 0 18px rgba(91, 33, 182, 0.4);
+}
+
+.team-card__back-name {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.team-card__back-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mint);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.team-card__back-bio {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--zinc300);
+  max-width: 220px;
 }
 
 /* Faixa de cultura */

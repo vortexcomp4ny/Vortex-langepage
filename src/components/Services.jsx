@@ -40,18 +40,21 @@ const SERVICES = [
     title: 'Tráfego Pago',
     desc: 'Gestão de campanhas em Meta, Google e TikTok Ads com criativos, segmentação e otimização orientados por margem.',
     tags: ['Media Buying', 'Criativos', 'ROAS'],
+    backDesc: 'Estruturamos campanhas do zero ou auditamos o que já existe. Criativos testados, audiências segmentadas por intenção e otimização focada em custo por venda — não em cliques.',
   },
   {
     Icon: IconLayout,
     title: 'Landing Pages',
     desc: 'Páginas rápidas, persuasivas e testáveis, criadas para transformar cliques em leads, vendas e reuniões qualificadas.',
     tags: ['CRO', 'Copywriting', 'A/B Tests'],
+    backDesc: 'Design orientado por conversão, copy que remove objeções e testes A/B contínuos. Cada elemento da página tem uma hipótese e um número para validar.',
   },
   {
     Icon: IconCart,
     title: 'E-commerce',
     desc: 'Arquitetura de funil, tracking, ofertas e recorrência para lojas que precisam escalar sem perder eficiência.',
     tags: ['Shopify', 'Checkout', 'LTV'],
+    backDesc: 'Da estrutura de produto ao pós-venda: funil completo, recuperação de carrinho, upsell e relatórios de margem real. Escalamos receita sem inflar CAC.',
   },
 ];
 
@@ -92,21 +95,36 @@ export default function Services() {
         </div>
 
         <div ref={gridRef} className="services__grid">
-          {SERVICES.map(({ Icon, title, desc, tags }, i) => (
+          {SERVICES.map(({ Icon, title, desc, tags, backDesc }, i) => (
             <article
               key={title}
               ref={(el) => (cardsRef.current[i] = el)}
               className="service-card"
             >
-              <div className="service-card__icon">
-                <Icon />
-              </div>
-              <h3 className="service-card__title">{title}</h3>
-              <p className="service-card__desc">{desc}</p>
-              <div className="service-card__tags">
-                {tags.map((tag) => (
-                  <span key={tag} className="service-card__tag">{tag}</span>
-                ))}
+              <div className="service-card__inner">
+                {/* Frente */}
+                <div className="service-card__front">
+                  <div className="service-card__icon"><Icon /></div>
+                  <h3 className="service-card__title">{title}</h3>
+                  <p className="service-card__desc">{desc}</p>
+                  <div className="service-card__tags">
+                    {tags.map((tag) => (
+                      <span key={tag} className="service-card__tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Verso */}
+                <div className="service-card__back">
+                  <p className="service-card__back-title">{title}</p>
+                  <p className="service-card__back-desc">{backDesc}</p>
+                  <a href="#contato" className="service-card__back-cta">
+                    Falar com a equipe
+                    <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                      <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </article>
           ))}

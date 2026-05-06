@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import useScramble from '../hooks/useScramble';
-import Typewriter from './Typewriter';
 
 export default function Hero() {
   const cardRef = useRef(null);
@@ -78,16 +77,8 @@ export default function Hero() {
             </h1>
 
             <p ref={subRef} className="hero__sub">
-              <Typewriter
-                text={[
-                  'Tráfego pago, landing pages e e-commerce integrados para crescer com margem e consistência.',
-                  'Campanhas que vendem. Páginas que convertem. Resultados que escalam.',
-                  'Da verba ao faturamento — estratégia, criativo e dados em uma só operação.',
-                ]}
-                speed={38}
-                delay={1400}
-                pause={2800}
-              />
+              Tráfego pago, landing pages e e-commerce integrados para
+              crescer com margem e consistência.
             </p>
 
             <div ref={actionsRef} className="hero__actions">

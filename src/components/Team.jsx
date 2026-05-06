@@ -8,6 +8,7 @@ const MEMBERS = [
     img: '/fotonova_do_guri_editada.png',
     initials: 'AT',
     color: '#5b21b6',
+    bio: 'Especialista em automações de marketing e fluxos inteligentes. Conecta ferramentas para que cada lead seja tratado no momento certo.',
   },
   {
     name: 'João Neto',
@@ -15,6 +16,7 @@ const MEMBERS = [
     img: '/d6426081-2df3-4abf-885e-daae113fe668.png',
     initials: 'JN',
     color: '#0d9488',
+    bio: 'Transforma dados brutos em decisões. Cuida da infraestrutura técnica, dashboards e integrações que fazem a operação rodar com precisão.',
   },
   {
     name: 'Augustus Gangary',
@@ -22,6 +24,7 @@ const MEMBERS = [
     img: '/6DF21DD5-C899-45FE-BA21-3C95BE6E4C73.png',
     initials: 'AG',
     color: '#86198f',
+    bio: 'Gerencia investimentos em Meta, Google e TikTok Ads com foco em ROAS real. Também desenvolve as landing pages que recebem o tráfego.',
   },
 ];
 
@@ -71,44 +74,43 @@ export default function Team() {
         </div>
 
         <div className="team__grid">
-          {MEMBERS.map(({ name, role, img, initials, color }, i) => (
+          {MEMBERS.map(({ name, role, img, initials, color, bio }, i) => (
             <article
               key={name}
-              ref={(el) => {
-                cardsRef.current[i] = el;
-              }}
+              ref={(el) => { cardsRef.current[i] = el; }}
               className="team-card"
             >
-              <div className="team-card__photo-wrap">
-                {img ? (
-                  <img
-                    src={img}
-                    alt={name}
-                    className="team-card__photo"
-                    draggable="false"
-                  />
-                ) : (
-                  <div
-                    className="team-card__avatar"
-                    style={{
-                      background: `linear-gradient(135deg, ${color}55, ${color}22)`,
-                      borderColor: `${color}44`,
-                    }}
-                  >
-                    <span className="team-card__initials" style={{ color }}>
-                      {initials}
-                    </span>
+              <div className="team-card__inner">
+                {/* Frente */}
+                <div className="team-card__front">
+                  <div className="team-card__photo-wrap">
+                    {img ? (
+                      <img src={img} alt={name} className="team-card__photo" draggable="false" />
+                    ) : (
+                      <div
+                        className="team-card__avatar"
+                        style={{ background: `linear-gradient(135deg, ${color}55, ${color}22)`, borderColor: `${color}44` }}
+                      >
+                        <span className="team-card__initials" style={{ color }}>{initials}</span>
+                      </div>
+                    )}
+                    <div className="team-card__role-tag">{role}</div>
                   </div>
-                )}
-
-                <div className="team-card__role-tag">
-                  {role}
+                  <div className="team-card__info">
+                    <h3 className="team-card__name">{name}</h3>
+                    <p className="team-card__role">{role}</p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-card__info">
-                <h3 className="team-card__name">{name}</h3>
-                <p className="team-card__role">{role}</p>
+                {/* Verso */}
+                <div className="team-card__back-face">
+                  {img && (
+                    <img src={img} alt={name} className="team-card__back-avatar" draggable="false" />
+                  )}
+                  <p className="team-card__back-name">{name}</p>
+                  <p className="team-card__back-role">{role}</p>
+                  <p className="team-card__back-bio">{bio}</p>
+                </div>
               </div>
             </article>
           ))}
