@@ -232,6 +232,20 @@ button { font-family: inherit; cursor: none; }
 .btn:hover .arrow-upright { transform: translate(3px, -3px); }
 
 /* ────────────────────────────────────────
+   TYPEWRITER
+──────────────────────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--violet);
+  font-weight: 300;
+  transition: opacity 0.1s;
+  text-shadow:
+    0 0 8px rgba(109, 40, 217, 0.9),
+    0 0 20px rgba(109, 40, 217, 0.5);
+}
+
+/* ────────────────────────────────────────
    CURSOR
 ──────────────────────────────────────── */
 .cursor-dot {
