@@ -1476,6 +1476,67 @@ button { font-family: inherit; cursor: none; }
   .wt2-split { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 760px) {
+  /* Header */
+  .wt2-header { margin-bottom: 28px; }
+
+  /* Category tabs — scroll horizontal em vez de quebrar linha */
+  .wt2-cats {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-bottom: 28px;
+    gap: 8px;
+  }
+  .wt2-cats::-webkit-scrollbar { display: none; }
+  .wt2-cat { padding: 8px 18px; font-size: 12px; }
+
+  /* Browser mockup */
+  .wt2-viewport { height: 260px; }
+  .wt2-browser { border-radius: 8px; }
+
+  /* Botão expand — sempre visível no mobile (sem hover) */
+  .wt2-viewport__expand-btn {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .wt2-viewport__hint { display: none; }
+
+  /* Meta row abaixo do browser */
+  .wt2-meta { padding: 12px 2px 0; gap: 8px; }
+  .wt2-meta__value { font-size: 1.3rem; }
+
+  /* Lista de projetos */
+  .wt2-right { margin-top: 8px; }
+  .wt2-right__label { margin-bottom: 10px; }
+
+  /* Item do projeto — esconde métrica para não vazar */
+  .wt2-item {
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    padding: 14px 14px;
+  }
+  .wt2-item__metric { display: none; }
+  .wt2-item__num { font-size: 0.7rem; }
+  .wt2-item__title { font-size: 0.85rem; }
+  .wt2-item__desc { font-size: 11px; }
+
+  /* Botão inspecionar */
+  .wt2-inspect-cta { font-size: 12px; padding: 10px 16px; }
+
+  /* Modal fullscreen no mobile */
+  .wt2-modal { padding: 0; align-items: flex-end; }
+  .wt2-modal__panel {
+    max-width: 100%;
+    height: 92vh;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
 /* ── Browser mockup ── */
 .wt2-browser {
   border-radius: 12px;

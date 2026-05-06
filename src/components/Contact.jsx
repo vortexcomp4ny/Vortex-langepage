@@ -86,15 +86,6 @@ export default function Contact() {
                   <IconWhatsApp />
                   Falar no WhatsApp
                 </a>
-                <a
-                  href="mailto:contato@vortex.ag"
-                  className="btn btn--outline-white"
-                >
-                  Enviar e-mail
-                  <span className="arrow-upright">
-                    <IconArrowUpRight />
-                  </span>
-                </a>
               </div>
             </div>
           </div>
