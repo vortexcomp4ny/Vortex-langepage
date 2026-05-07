@@ -605,24 +605,48 @@ button { font-family: inherit; cursor: none; }
   gap: 32px;
 }
 
-/* Wrapper da rainha */
+/* Wrapper das peças 3D */
 .about__queen-wrap {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 260px;
-  perspective: 900px;
+  height: 320px;
+  perspective: 700px;
+  perspective-origin: 50% 40%;
+}
+
+/* Glow ambiente roxo atrás da imagem */
+.about__queen-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 60%,
+    rgba(124, 58, 237, 0.28) 0%,
+    rgba(91, 33, 182, 0.14) 45%,
+    transparent 72%);
+  filter: blur(18px);
+  pointer-events: none;
+  animation: chessGlowPulse 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes chessGlowPulse {
+  from { opacity: 0.7; transform: scale(0.95); }
+  to   { opacity: 1;   transform: scale(1.08); }
 }
 
 .about__queen {
-  height: 220px;
+  height: 280px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 32px rgba(91, 33, 182, 0.55))
-          drop-shadow(0 0 8px rgba(134, 25, 143, 0.3));
+  filter:
+    drop-shadow(0 12px 40px rgba(91, 33, 182, 0.65))
+    drop-shadow(0  0  18px rgba(134, 25, 143, 0.45))
+    drop-shadow(0  4px  8px rgba(0, 0, 0, 0.4));
   will-change: transform;
   transform-style: preserve-3d;
+  transform-origin: 50% 80%;
   user-select: none;
   pointer-events: none;
 }
@@ -640,8 +664,8 @@ button { font-family: inherit; cursor: none; }
 }
 
 @media (max-width: 768px) {
-  .about__queen-wrap { height: 200px; }
-  .about__queen      { height: 170px; }
+  .about__queen-wrap { height: 240px; }
+  .about__queen      { height: 210px; }
 }
 
 .about__card {

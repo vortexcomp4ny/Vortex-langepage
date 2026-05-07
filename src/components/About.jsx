@@ -25,32 +25,55 @@ export default function About() {
         opacity: 0, x: 40, duration: 0.9, ease: 'power3.out', delay: 0.15,
       });
 
-      /* ── Rainha: entrada ── */
+      /* ── Entrada cinematográfica ── */
       gsap.from(queenRef.current, {
         scrollTrigger: { trigger: queenRef.current, start: 'top 82%' },
         opacity: 0,
-        y: 40,
-        rotationY: -60,
-        duration: 1.2,
+        y: 60,
+        rotationY: -25,
+        rotationX: 12,
+        scale: 0.88,
+        duration: 1.4,
         ease: 'power3.out',
       });
 
-      /* ── Rotação 3D contínua (Y) ── */
+      /* ── Levitação suave (Y) ── */
       gsap.to(queenRef.current, {
-        rotationY: 360,
-        duration: 10,
-        repeat: -1,
-        ease: 'none',
-        transformOrigin: '50% 50%',
-      });
-
-      /* ── Float sutil (Y) ── */
-      gsap.to(queenRef.current, {
-        y: -18,
-        duration: 2.8,
+        y: -22,
+        duration: 3.2,
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut',
+      });
+
+      /* ── Oscilação 3D no eixo Y (câmera parallax) ── */
+      gsap.to(queenRef.current, {
+        rotationY: 14,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 0.4,
+      });
+
+      /* ── Oscilação 3D no eixo X (inclinação cinematográfica) ── */
+      gsap.to(queenRef.current, {
+        rotationX: -6,
+        duration: 4.2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 0.8,
+      });
+
+      /* ── Pulso de escala sutil ── */
+      gsap.to(queenRef.current, {
+        scale: 1.04,
+        duration: 3.8,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 1,
       });
     });
 
@@ -87,8 +110,8 @@ export default function About() {
             <div className="about__queen-wrap">
               <img
                 ref={queenRef}
-                src="/a5e0e28b-10ae-4d72-83d5-eb40ff2cb3a7.png"
-                alt="Rainha de xadrez — símbolo de estratégia"
+                src="/xadrez.png"
+                alt="Peças de xadrez — símbolo de estratégia"
                 className="about__queen"
                 draggable="false"
               />
