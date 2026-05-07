@@ -45,8 +45,7 @@ export function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <a href="#topo" className="footer__logo" aria-label="Vortex">
-            <span className="footer__logo-mark">V</span>
-            <span className="footer__logo-text">Vortex</span>
+            <img src="/log.png" alt="Vortex" className="footer__logo-img" />
           </a>
           <p className="footer__copy">
             Performance criativa para marcas ambiciosas.

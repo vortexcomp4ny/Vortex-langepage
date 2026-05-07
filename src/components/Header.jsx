@@ -66,8 +66,7 @@ export default function Header() {
 
         {/* Logo */}
         <a href="#topo" className="header__logo" aria-label="Vortex">
-          <span className="header__logo-mark">V</span>
-          <span className="header__logo-text">Vortex</span>
+          <img src="/log.png" alt="Vortex" className="header__logo-img" />
         </a>
 
         {/* Nav desktop */}
