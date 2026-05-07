@@ -1189,6 +1189,22 @@ button { font-family: inherit; cursor: none; }
   padding: 20px 24px 24px;
 }
 
+.team-card__name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.team-card__title {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
 .team-card__name {
   font-family: var(--font-head);
   font-size: 1.15rem;

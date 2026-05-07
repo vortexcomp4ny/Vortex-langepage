@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 const MEMBERS = [
   {
     name: 'Andrew Torres',
+    title: 'CEO',
     role: 'Automação & Marketing',
     img: '/fotonova_do_guri_editada.png',
     initials: 'AT',
@@ -12,6 +13,7 @@ const MEMBERS = [
   },
   {
     name: 'João Neto',
+    title: 'CFO',
     role: 'Desenvolvedor & Analista de dados',
     img: '/d6426081-2df3-4abf-885e-daae113fe668.png',
     initials: 'JN',
@@ -20,6 +22,7 @@ const MEMBERS = [
   },
   {
     name: 'Augustus Gangary',
+    title: 'CTO',
     role: 'Gestor de Tráfego & Desenvolvedor',
     img: '/6DF21DD5-C899-45FE-BA21-3C95BE6E4C73.png',
     initials: 'AG',
@@ -74,7 +77,7 @@ export default function Team() {
         </div>
 
         <div className="team__grid">
-          {MEMBERS.map(({ name, role, img, initials, color }, i) => (
+          {MEMBERS.map(({ name, title, role, img, initials, color }, i) => (
             <article
               key={name}
               ref={(el) => { cardsRef.current[i] = el; }}
@@ -94,7 +97,10 @@ export default function Team() {
                 <div className="team-card__role-tag">{role}</div>
               </div>
               <div className="team-card__info">
-                <h3 className="team-card__name">{name}</h3>
+                <div className="team-card__name-row">
+                  <h3 className="team-card__name">{name}</h3>
+                  {title && <span className="team-card__title">{title}</span>}
+                </div>
                 <p className="team-card__role">{role}</p>
               </div>
             </article>
