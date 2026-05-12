@@ -3,9 +3,7 @@ import { gsap } from 'gsap';
 
 const NAV_LINKS = [
   { label: 'Serviços',         href: '#servicos' },
-  { label: 'Como trabalhamos', href: '#como-trabalhamos' },
-  { label: 'Resultados',       href: '#metricas' },
-  { label: 'Avaliações',       href: '#avaliacoes' },
+  { label: 'Como trabalhamos', href: '#como-funciona' },
   { label: 'Equipe',           href: '#equipe' },
   { label: 'Planos',           href: '#planos' },
 ];
@@ -66,7 +64,7 @@ export default function Header() {
 
         {/* Logo */}
         <a href="#topo" className="header__logo" aria-label="Vortex">
-          <img src="/log.png" alt="Vortex" className="header__logo-img" />
+          <img src="/vortex-logo.webp" alt="Vortex" className="header__logo-img" />
         </a>
 
         {/* Nav desktop */}
@@ -79,9 +77,14 @@ export default function Header() {
         </nav>
 
         {/* CTA desktop */}
-        <a href="#contato" className="btn btn--primary header__cta">
+        <a
+          href="https://wa.me/5551981335440"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-cta"
+        >
           <WhatsAppIcon />
-          <span>Falar com um especialista</span>
+          <span>Falar com a Vortex</span>
         </a>
 
         {/* Hamburger mobile */}
@@ -109,13 +112,15 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#contato"
-            className="btn btn--primary"
-            style={{ marginTop: '8px' }}
+            href="https://wa.me/5551981335440"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-cta"
+            style={{ marginTop: '8px', width: '100%', justifyContent: 'center' }}
             onClick={() => setMenuOpen(false)}
           >
             <WhatsAppIcon />
-            <span>Falar com um especialista</span>
+            <span>Falar com a Vortex no WhatsApp</span>
           </a>
         </div>
       )}

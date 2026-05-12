@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ButtonCta from './ButtonCta.jsx';
 
 const BULLETS = [
-  'Diagnóstico do funil atual',
-  'Plano de ação de 90 dias',
-  'Projeção de metas por canal',
+  'Resposta no WhatsApp em até 1 dia útil',
+  'Orçamento sem enrolação',
+  'Você fala com quem vai fazer o trabalho',
 ];
 
 function IconCheck() {
@@ -57,12 +58,12 @@ export default function Contact() {
             <div>
               <span className="eyebrow">Fale com a Vortex</span>
               <h2 className="contact__title">
-                Vamos encontrar a próxima alavanca de crescimento da sua marca.
+                Manda o que você precisa que a gente responde rápido.
               </h2>
               <p className="contact__sub">
-                Agende uma conversa estratégica e receba uma leitura clara sobre
-                onde sua operação pode ganhar velocidade, margem e
-                previsibilidade.
+                Sem formulário longo, sem agendamento de "call de descoberta".
+                Chama no WhatsApp, conta seu projeto, e em até 1 dia útil
+                você recebe orçamento.
               </p>
             </div>
 
@@ -77,15 +78,15 @@ export default function Contact() {
               </div>
 
               <div className="contact__actions">
-                <a
-                  href="https://wa.me/5500000000000?text=Oi%2C%20quero%20conhecer%20a%20Vortex"
+                <ButtonCta
+                  href="https://wa.me/5551981335440?text=Oi%2C%20quero%20conhecer%20a%20Vortex"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn--white"
+                  className="btn-cta--lg"
                 >
                   <IconWhatsApp />
                   Falar no WhatsApp
-                </a>
+                </ButtonCta>
               </div>
             </div>
           </div>

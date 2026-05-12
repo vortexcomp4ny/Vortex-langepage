@@ -1,101 +1,139 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
+import ButtonCta from './ButtonCta.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PLANS = [
   {
-    id: 'start',
-    name: 'Start',
+    id: 'lp',
+    name: 'Landing Page',
     tag: null,
-    desc: 'Para negócios que querem começar a escalar com método e estrutura.',
-    price: 450,
-    cta: 'Começar agora',
-    accent: '#0d9488',
+    desc: 'Pra oferta única, lançamento, anúncio Meta/Google, prestadores de serviço.',
+    oldPrice: 1200,
+    price: 800,
+    priceLabel: 'a partir de',
+    cta: 'Quero minha LP',
     accentRgb: '13,148,136',
     featured: false,
     features: [
-      { text: '1 canal de mídia (Meta ou Google)', on: true },
-      { text: 'Gestão de até R$ 15k/mês em verba', on: true },
-      { text: '4 criativos por mês', on: true },
-      { text: 'Relatório quinzenal', on: true },
-      { text: 'Landing page de entrada', on: true },
-      { text: 'Reunião estratégica mensal', on: true },
-      { text: 'E-commerce & funil avançado', on: false },
-      { text: 'Criativos em vídeo', on: false },
-      { text: 'Dashboards em tempo real', on: false },
+      'Estrutura focada em 1 objetivo',
+      'Copy escrita pelos profissionais da Vortex',
+      'Design + build',
+      'Tracking instalado (Meta Pixel, GA4)',
+      'Mobile-first + Lighthouse 90+',
+      '30 dias de ajustes pós-entrega',
     ],
   },
   {
-    id: 'growth',
-    name: 'Growth',
-    tag: 'Mais popular',
-    desc: 'Para marcas que já vendem e querem multiplicar os resultados com consistência.',
-    price: 1500,
-    cta: 'Quero escalar agora',
-    accent: '#7c3aed',
+    id: 'site',
+    name: 'Site Institucional',
+    tag: 'Mais procurado',
+    desc: 'Pra marca que precisa de presença séria.',
+    oldPrice: 2500,
+    price: 2000,
+    priceLabel: 'a partir de',
+    cta: 'Quero meu site',
     accentRgb: '124,58,237',
     featured: true,
     features: [
-      { text: '2 canais de mídia (Meta + Google)', on: true },
-      { text: 'Gestão de até R$ 50k/mês em verba', on: true },
-      { text: '10 criativos por mês (estático + vídeo)', on: true },
-      { text: 'Relatório semanal com insights', on: true },
-      { text: 'Landing pages ilimitadas (A/B)', on: true },
-      { text: 'Reunião estratégica quinzenal', on: true },
-      { text: 'E-commerce & funil avançado', on: true },
-      { text: 'Criativos em vídeo', on: true },
-      { text: 'Dashboards em tempo real', on: false },
+      'Até 5 páginas',
+      'Identidade visual aplicada',
+      'SEO básico',
+      'Painel pra editar texto sem mexer no código',
+      'Hospedagem 1º ano incluso',
+      '30 dias de ajuste pós-entrega',
     ],
   },
   {
-    id: 'scale',
-    name: 'Scale',
+    id: 'combo',
+    name: 'Combo + Tráfego',
     tag: 'Full operação',
-    desc: 'Operação completa para quem precisa de velocidade, dados e escala sem limite.',
+    desc: 'Pra quem precisa de um site e novos clientes entrando no funil todo dia.',
     price: null,
-    cta: 'Falar com o time',
-    accent: '#86198f',
+    cta: 'Falar com a Vortex',
     accentRgb: '134,25,143',
     featured: false,
     features: [
-      { text: 'Todos os canais (Meta, Google, TikTok)', on: true },
-      { text: 'Gestão de verba ilimitada', on: true },
-      { text: 'Criativos ilimitados (estático + vídeo)', on: true },
-      { text: 'Relatório diário + alertas automáticos', on: true },
-      { text: 'Landing pages ilimitadas + CRO avançado', on: true },
-      { text: 'Acesso direto ao time + reuniões semanais', on: true },
-      { text: 'E-commerce & funil avançado', on: true },
-      { text: 'Criativos em vídeo', on: true },
-      { text: 'Dashboards em tempo real', on: true },
+      'Tudo do Pacote 1 OU 2',
+      'Setup de campanhas Meta Ads',
+      'Lote de criativos com qualidade',
+      'Acompanhamento frequente de métricas',
     ],
   },
 ];
 
-function Check({ color }) {
+function CheckCircle() {
   return (
-    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="8.5" cy="8.5" r="8" fill={color} fillOpacity="0.15" />
-      <path d="M5.5 8.5l2.5 2.5L12 6" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      className="plano__check-icon"
+      width="15"
+      height="15"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.3" />
+      <path
+        d="M5 8.2l2.2 2.2 3.8-4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
-function Cross() {
+function BorderTrail({ size = 100, style }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="8.5" cy="8.5" r="8" fill="rgba(255,255,255,0.04)" />
-      <path d="M6 6l5 5M11 6l-5 5" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
+    <div className="plano__trail-track">
+      <motion.div
+        className="plano__trail-dot"
+        style={{
+          width: size,
+          offsetPath: 'rect(0 auto auto 0 round 10px)',
+          ...style,
+        }}
+        animate={{ offsetDistance: ['0%', '100%'] }}
+        transition={{ repeat: Infinity, duration: 5, ease: 'linear' }}
+      />
+    </div>
   );
+}
+
+const tiltRaf = new WeakMap();
+
+function onTiltMove(e) {
+  const wrap = e.currentTarget;
+  if (tiltRaf.get(wrap)) return;
+  const cx = e.clientX, cy = e.clientY;
+  tiltRaf.set(wrap, requestAnimationFrame(() => {
+    const rect = wrap.getBoundingClientRect();
+    const rx = -((cy - (rect.top  + rect.height / 2)) / (rect.height / 2)) * 6;
+    const ry =  ((cx - (rect.left + rect.width  / 2)) / (rect.width  / 2)) * 6;
+    wrap.style.setProperty('--rx', rx + 'deg');
+    wrap.style.setProperty('--ry', ry + 'deg');
+    wrap.style.setProperty('--mx', (cx - rect.left) + 'px');
+    wrap.style.setProperty('--my', (cy - rect.top)  + 'px');
+    wrap.style.setProperty('--glow-active', '1');
+    tiltRaf.set(wrap, null);
+  }));
+}
+
+function onTiltLeave(e) {
+  const wrap = e.currentTarget;
+  wrap.style.setProperty('--rx', '0deg');
+  wrap.style.setProperty('--ry', '0deg');
+  wrap.style.setProperty('--glow-active', '0');
 }
 
 export default function Pricing() {
   const sectionRef = useRef(null);
   const cardsRef   = useRef([]);
 
-  /* Scroll entrance */
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -117,80 +155,125 @@ export default function Pricing() {
     <section id="planos" className="pricing section" ref={sectionRef}>
       <div className="container">
 
-        {/* Header */}
         <div className="pricing__header">
-          <span className="eyebrow">Planos & Pacotes</span>
+          <span className="eyebrow">Pacotes</span>
           <h2 className="section-title">
-            Escolha o plano certo<br />para o seu momento.
+            Escolha o que você deseja<br />e deixe conosco.
           </h2>
           <p className="section-desc">
-            Preço transparente, sem fidelidade obrigatória e sem surpresas na fatura.
+            Preços fechados, sem fidelidade. Você paga pelo trabalho entregue.
+            Opcional de recorrência incluso.
           </p>
-
         </div>
 
-        {/* Cards grid */}
-        <div className="pricing__grid">
+        <div className="planos-grid">
           {PLANS.map((plan, i) => (
-            <article
+            <div
               key={plan.id}
-              ref={el => (cardsRef.current[i] = el)}
-              className={`plan-card${plan.featured ? ' plan-card--featured' : ''}`}
-              style={{ '--pa': plan.accent, '--pr': plan.accentRgb }}
+              className="plano-wrap"
+              onMouseMove={onTiltMove}
+              onMouseLeave={onTiltLeave}
             >
-              {plan.featured && <div className="plan-card__glow" />}
-
-              {/* Badge */}
-              <div className="plan-card__badges">
-                {plan.tag && <span className="plan-card__tag">{plan.tag}</span>}
-              </div>
-
-              {/* Name */}
-              <div className="plan-card__name">{plan.name}</div>
-              <p className="plan-card__desc">{plan.desc}</p>
-
-              {/* Price */}
-              {plan.price !== null ? (
-                <div className="plan-card__price-row">
-                  <span className="plan-card__currency">R$</span>
-                  <span className="plan-card__price">
-                    {plan.price.toLocaleString('pt-BR')}
-                  </span>
-                </div>
-              ) : (
-                <div className="plan-card__price-row">
-                  <span className="plan-card__price plan-card__price--custom">A negociar</span>
-                </div>
+            <article
+              ref={el => (cardsRef.current[i] = el)}
+              className={`plano${plan.featured ? ' plano--featured' : ''}`}
+              style={{ '--accent-rgb': plan.accentRgb }}
+            >
+              {/* BorderTrail — featured (roxo) e combo (fuchsia) */}
+              {plan.featured && (
+                <BorderTrail
+                  size={100}
+                  style={{
+                    boxShadow:
+                      '0px 0px 60px 30px rgba(167,139,250,0.45), 0 0 100px 60px rgba(0,0,0,0.45), 0 0 140px 90px rgba(0,0,0,0.45)',
+                  }}
+                />
+              )}
+              {plan.id === 'combo' && (
+                <BorderTrail
+                  size={80}
+                  style={{
+                    boxShadow:
+                      '0px 0px 50px 24px rgba(168,85,247,0.4), 0 0 90px 50px rgba(0,0,0,0.4)',
+                  }}
+                />
               )}
 
-              {/* CTA button */}
-              <a
-                href="#contato"
-                className={`plan-card__cta${plan.featured ? ' plan-card__cta--main' : ''}`}
-              >
-                {plan.cta}
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
+              {/* ── Head: número + nome + preço ── */}
+              <div className="plano__head">
+                {plan.featured && plan.tag && (
+                  <span className="plano__featured-tag">{plan.tag}</span>
+                )}
+                {plan.id === 'combo' && plan.tag && (
+                  <span className="plano__featured-tag plano__featured-tag--combo">{plan.tag}</span>
+                )}
 
-              <div className="plan-card__sep" />
+                <div className="plano__num">{String(i + 1).padStart(2, '0')}</div>
+                <div className="plano__nome">{plan.name}</div>
 
-              {/* Features */}
-              <ul className="plan-card__list">
-                {plan.features.map((f, j) => (
-                  <li key={j} className={`plan-card__item${f.on ? '' : ' plan-card__item--off'}`}>
-                    {f.on ? <Check color={plan.accent} /> : <Cross />}
-                    <span>{f.text}</span>
-                  </li>
-                ))}
-              </ul>
+                {plan.price !== null ? (
+                  <div className="plano__preco">
+                    {plan.oldPrice && (
+                      <span className="plano__preco-old">
+                        R$ {plan.oldPrice.toLocaleString('pt-BR')}
+                      </span>
+                    )}
+                    <div className="plano__preco-row">
+                      <span className="plano__preco-cur">R$</span>
+                      <span className="plano__preco-val">
+                        {plan.price.toLocaleString('pt-BR')}
+                      </span>
+                      {plan.priceLabel && (
+                        <span className="plano__preco-suf">{plan.priceLabel}</span>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="plano__preco">
+                    <div className="plano__preco-row">
+                      <span className="plano__preco-val plano__preco-val--custom">
+                        Sob consulta
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* ── Body: descrição + features ── */}
+              <div className="plano__body">
+                <p className="plano__desc">{plan.desc}</p>
+                <ul className="plano__feats">
+                  {plan.features.map((text, j) => (
+                    <li key={j}>
+                      <CheckCircle />
+                      <span>{text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ── Foot: CTA ── */}
+              <div className="plano__foot">
+                <ButtonCta href="#contato" className="btn-cta--full">
+                  <span>{plan.cta}</span>
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </ButtonCta>
+              </div>
             </article>
+            </div>
           ))}
         </div>
 
         <p className="pricing__footnote">
-          Todos os planos incluem onboarding dedicado.&nbsp;
+          Pagamento em 50% no início + 50% na entrega. Aceitamos Pix, cartão e boleto.&nbsp;
           <a href="#contato" className="pricing__footnote-link">Tem dúvidas? Fale com a gente.</a>
         </p>
 

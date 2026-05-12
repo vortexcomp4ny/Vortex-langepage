@@ -1,33 +1,34 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import GlowCard from './GlowCard.jsx';
 
 const MEMBERS = [
   {
-    name: 'Andrew Torres',
-    title: 'CEO',
-    role: 'Automação & Marketing',
-    img: '/fotonova_do_guri_editada.png',
-    initials: 'AT',
-    color: '#5b21b6',
-    bio: 'Especialista em automações de marketing e fluxos inteligentes. Conecta ferramentas para que cada lead seja tratado no momento certo.',
+    name: 'Augustus Gangary',
+    title: 'Resultado',
+    role: 'Resultado & Performance',
+    img: '/augustus-portrait.webp',
+    initials: 'AG',
+    color: '#86198f',
+    bio: '4 anos como gestor de tráfego pago. Faz copys e criativos que vendem. É quem vai entender seu negócio antes de qualquer linha de código.',
   },
   {
     name: 'João Neto',
-    title: 'CFO',
-    role: 'Desenvolvedor & Analista de dados',
-    img: '/d6426081-2df3-4abf-885e-daae113fe668.png',
+    title: 'Código',
+    role: 'Código & Segurança',
+    img: '/d6426081-2df3-4abf-885e-daae113fe668.webp',
     initials: 'JN',
     color: '#0d9488',
-    bio: 'Transforma dados brutos em decisões. Cuida da infraestrutura técnica, dashboards e integrações que fazem a operação rodar com precisão.',
+    bio: 'Dev pleno com background em cibersegurança. Constrói o site, garante velocidade e mantém a infra toda protegida.',
   },
   {
-    name: 'Augustus Gangary',
-    title: 'CTO',
-    role: 'Gestor de Tráfego & Desenvolvedor',
-    img: '/6DF21DD5-C899-45FE-BA21-3C95BE6E4C73.png',
-    initials: 'AG',
-    color: '#86198f',
-    bio: 'Gerencia investimentos em Meta, Google e TikTok Ads com foco em ROAS real. Também desenvolve as landing pages que recebem o tráfego.',
+    name: 'Andrew Torres',
+    title: 'Operações',
+    role: 'Automação & Operações',
+    img: '/fotonova_do_guri_editada.webp',
+    initials: 'AT',
+    color: '#5b21b6',
+    bio: 'Especialista em n8n. Conecta WhatsApp, planilhas e CRM pra que cada lead chegue no lugar certo no momento certo. Também é quem vai te atender na maioria dos casos.',
   },
 ];
 
@@ -65,27 +66,27 @@ export default function Team() {
     <section id="equipe" className="team section">
       <div className="container">
         <div ref={headRef} className="team__header">
-          <span className="eyebrow">Sobre nós</span>
+          <span className="eyebrow">Equipe</span>
           <h2 className="section-title">
-            Conheça quem está por trás dos resultados.
+            A pessoa que vai te atender é a pessoa que vai fazer.
           </h2>
           <p className="section-desc">
-            Um time pequeno, especializado e obcecado por crescimento. Cada
-            pessoa aqui toca performance todos os dias, sem terceirizar
-            decisões.
+            Três skills, um time só. Sem atendente que repassa o problema
+            adiante. Você fala com quem entrega.
           </p>
         </div>
 
         <div className="team__grid">
           {MEMBERS.map(({ name, title, role, img, initials, color }, i) => (
-            <article
+            <GlowCard
               key={name}
               ref={(el) => { cardsRef.current[i] = el; }}
+              glowColor="purple"
               className="team-card"
             >
               <div className="team-card__photo-wrap">
                 {img ? (
-                  <img src={img} alt={name} className="team-card__photo" draggable="false" />
+                  <img src={img} alt={name} className="team-card__photo" draggable="false" loading="lazy" decoding="async" />
                 ) : (
                   <div
                     className="team-card__avatar"
@@ -103,10 +104,11 @@ export default function Team() {
                 </div>
                 <p className="team-card__role">{role}</p>
               </div>
-            </article>
+            </GlowCard>
           ))}
         </div>
 
+        <div className="team__culture-frame">
         <div className="team__culture">
           <div className="team__culture-item">
             <span className="team__culture-num">I.A</span>
@@ -122,6 +124,7 @@ export default function Team() {
             <span className="team__culture-num">Full</span>
             <span className="team__culture-label">Stack: marketing, tech e estratégia</span>
           </div>
+        </div>
         </div>
       </div>
     </section>

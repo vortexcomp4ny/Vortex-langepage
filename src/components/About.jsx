@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import GlowCard from './GlowCard.jsx';
 
 const TAGS = [
-  'Meta Ads', 'Google Ads', 'TikTok Ads',
-  'CRO', 'Copywriting', 'A/B Tests',
-  'Shopify', 'Tracking', 'LTV',
+  'Sites', 'Landing Pages', 'CRO',
+  'Copywriting', 'Performance',
 ];
 
 export default function About() {
@@ -89,12 +89,13 @@ export default function About() {
           <div ref={leftRef}>
             <span className="eyebrow">Sobre a Vortex</span>
             <h2 className="section-title">
-              Jogamos xadrez enquanto outros jogam damas.
+              Criamos uma estrutura que vende.
             </h2>
             <p className="section-desc">
-              Somos uma equipe obsessiva por resultado. Cada decisão parte de
-              dados reais — campanhas, páginas, ofertas e criativos que se
-              comunicam entre si para gerar crescimento sustentável.
+              A Vortex é uma agência especializada em elevar o posicionamento de
+              marcas, seja com um site/landing page profissional ou com gestão
+              de tráfego 100% alinhada. Tudo em um lugar só. Você não precisa
+              mais terceirizar vários profissionais de marketing.
             </p>
             <div className="about__tags">
               {TAGS.map((tag) => (
@@ -110,27 +111,28 @@ export default function About() {
             <div className="about__queen-wrap">
               <img
                 ref={queenRef}
-                src="/xadrez.png"
-                alt="Peças de xadrez — símbolo de estratégia"
+                src="/xadrez.webp"
+                alt="Peças de xadrez, símbolo de estratégia"
                 className="about__queen"
+                loading="lazy"
+                decoding="async"
                 draggable="false"
               />
               {/* Sombra no chão */}
               <div className="about__queen-shadow" aria-hidden="true" />
             </div>
 
-            {/* Card de citação */}
-            <div className="about__card">
+            {/* Card de manifesto — com glow seguindo o cursor */}
+            <GlowCard glowColor="purple" className="about__card about__card--glow">
               <span className="about__quote-mark" aria-hidden="true">"</span>
               <blockquote className="about__quote">
-                A diferença entre crescer e apenas gastar está em como cada
-                peça do funil conversa com a outra.
+                Há quem crie identidade. A gente cria demanda.
               </blockquote>
               <div className="about__author">
                 <span className="about__author-line" />
-                Time Vortex — Estratégia de Performance
+                Vortex
               </div>
-            </div>
+            </GlowCard>
 
           </div>
         </div>

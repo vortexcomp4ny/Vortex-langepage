@@ -45,10 +45,10 @@ export function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <a href="#topo" className="footer__logo" aria-label="Vortex">
-            <img src="/log.png" alt="Vortex" className="footer__logo-img" />
+            <img src="/vortex-logo.webp" alt="Vortex" className="footer__logo-img" loading="lazy" decoding="async" />
           </a>
           <p className="footer__copy">
-            Performance criativa para marcas ambiciosas.
+            Menos discurso. Mais página rodando.
           </p>
         </div>
 
@@ -58,20 +58,7 @@ export function Footer() {
           <a href="#cookies">Política de cookies</a>
         </nav>
 
-        <div className="footer__social" aria-label="Redes sociais">
-          {SOCIAL_LINKS.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              className="footer__social-link"
-              aria-label={social.label}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
+        {/* Social links escondidos até criar perfis Vortex — Augustus 11/05 */}
       </div>
 
       <div className="container footer__bottom">

@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import ButtonCta from './ButtonCta.jsx';
 
 export default function Hero() {
   const cardRef = useRef(null);
@@ -52,7 +53,14 @@ export default function Hero() {
     <section id="topo" className="hero">
       <div className="hero__card-outer">
         <div ref={cardRef} className="hero__card">
-          <video className="hero__video" autoPlay muted loop playsInline>
+          <video
+            className="hero__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
             <source src="https://djqhpvmdlnnnspyarexn.supabase.co/storage/v1/object/public/Videos/Vortex.mp4" type="video/mp4" />
           </video>
 
@@ -60,34 +68,38 @@ export default function Hero() {
 
           <div className="hero__card-content">
             <div className="hero__badge">
-              <span className="hero__badge-dot" />
-              Performance · Conversão · Escala
+              <img
+                src="/logo-vortex-3d.webp"
+                alt="Vortex"
+                className="hero__badge-logo"
+                draggable="false"
+              />
             </div>
 
             <h1 className="hero__title">
               <span ref={line1Ref} className="hero__title-line">
-                Transformamos verba de mídia em
+                Fortalecemos sua presença digital.
               </span>
               <em ref={line2Ref} className="hero__title-line hero__title-em">
-                receita previsível.
+                Se posicione além dos seus concorrentes.
               </em>
             </h1>
 
             <p ref={subRef} className="hero__sub">
-              Tráfego pago, landing pages e e-commerce integrados para
-              crescer com margem e consistência.
+              Sites e landing pages de alto padrão. Te entregamos a
+              estrutura que os grandes usam.
             </p>
 
             <div ref={actionsRef} className="hero__actions">
-              <a href="#contato" className="btn btn--primary">
-                Quero escalar agora
-                <svg className="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <ButtonCta href="#contato">
+                Pedir uma proposta
+                <svg className="arrow" width="16" height="16" viewBox="0 0 18 18" fill="none">
                   <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
-              <a href="#como-trabalhamos" className="btn btn--ghost-light">
+              </ButtonCta>
+              <ButtonCta href="#como-funciona" className="btn-cta--ghost">
                 Ver como trabalhamos
-              </a>
+              </ButtonCta>
             </div>
           </div>
         </div>

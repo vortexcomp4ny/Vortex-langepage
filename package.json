@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "framer-motion": "^12.38.0",
     "gsap": "^3.12.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.4",
+    "sharp": "^0.34.5",
     "vite": "^7.1.12"
   }
 }

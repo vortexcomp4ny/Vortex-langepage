@@ -3,33 +3,33 @@ import { gsap } from 'gsap';
 
 const STEPS = [
   {
-    title: 'Imersão',
-    desc: 'Mergulhamos no seu negócio: histórico de campanhas, margem, funil atual e onde o dinheiro está vazando.',
-    icon: '/imersao.png',
+    title: 'Brief',
+    desc: 'Entender o seu negócio, o público e o objetivo da página antes de começar a construir.',
+    icon: '/imersao.webp',
     tilt: 'rotateY(-14deg) rotateX(8deg)',
   },
   {
-    title: 'Diagnóstico',
-    desc: 'Mapeamos os gargalos reais: criativos, páginas, segmentação ou oferta, com dados, não chutes.',
-    icon: '/search.png',
+    title: 'Estratégia',
+    desc: 'Definir estrutura, copy base e a métrica que vai dizer se a página funcionou.',
+    icon: '/search.webp',
     tilt: 'rotateY(12deg) rotateX(-6deg)',
   },
   {
-    title: 'Estratégia',
-    desc: 'Montamos o plano de 90 dias: canais, budget, testes prioritários e metas por etapa do funil.',
-    icon: '/peça.png',
+    title: 'Design',
+    desc: 'UX e visual orientados pela conversão.',
+    icon: '/peça.webp',
     tilt: 'rotateY(-10deg) rotateX(10deg)',
   },
   {
-    title: 'Execução',
-    desc: 'Implementamos campanhas, landing pages e tracking com velocidade e precisão de time especializado.',
-    icon: '/Target.png',
+    title: 'Build',
+    desc: 'Código próprio, mobile-first, tracking instalado.',
+    icon: '/Target.webp',
     tilt: 'rotateY(14deg) rotateX(-8deg)',
   },
   {
-    title: 'Evolução',
-    desc: 'Iteramos toda semana com base em dados reais. O que aprende em um canal alimenta os outros.',
-    icon: '/evoliçao.png',
+    title: 'Entrega + ajuste',
+    desc: 'Site no ar em até 5 dias. 30 dias de monitoria e refinamento incluso.',
+    icon: '/evoliçao.webp',
     tilt: 'rotateY(-12deg) rotateX(6deg)',
   },
 ];
@@ -94,10 +94,9 @@ export default function HowWeWork() {
           --wp-title: #f0ede8;
           --wp-muted: #a1a1aa;
           --wp-line-y: 196px;
-          background:
-            radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.18), transparent 36%),
-            var(--wp-bg);
-          border-block: 1px solid rgba(255, 255, 255, 0.06);
+          background: var(--wp-bg);
+          /* radial-gradient roxo removido 2026-05-11: vazava como pontinho atrás do divider wave anterior */
+          /* border-block removida 2026-05-11: cortava o efeito dos divisores */
           color: var(--wp-title);
           overflow: hidden;
           padding: clamp(72px, 9vw, 120px) 0;
@@ -416,8 +415,8 @@ export default function HowWeWork() {
 
       <div className="waskee-process__inner">
         <div className="waskee-process__header">
-          <span className="waskee-process__label">COMO FUNCIONA</span>
-          <h2 className="waskee-process__title">Do cadastro à venda simples assim</h2>
+          <span className="waskee-process__label">COMO TRABALHAMOS</span>
+          <h2 className="waskee-process__title">Do brief ao site no ar.</h2>
         </div>
 
         <div className="waskee-process__viewport" aria-label="Processo">
