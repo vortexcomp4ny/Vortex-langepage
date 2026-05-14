@@ -45,7 +45,7 @@ export function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <a href="#topo" className="footer__logo" aria-label="Vortex">
-            <img src="/vortex-logo.webp" alt="Vortex" className="footer__logo-img" loading="lazy" decoding="async" />
+            <img src="/vortex-logo.webp" alt="Vortex" className="footer__logo-img" width={480} height={65} loading="lazy" decoding="async" />
           </a>
           <p className="footer__copy">
             Menos discurso. Mais página rodando.

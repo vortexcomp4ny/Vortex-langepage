@@ -114,6 +114,8 @@ export default function About() {
                 src="/xadrez.webp"
                 alt="Peças de xadrez, símbolo de estratégia"
                 className="about__queen"
+                width={812}
+                height={760}
                 loading="lazy"
                 decoding="async"
                 draggable="false"

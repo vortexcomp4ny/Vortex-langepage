@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ButtonCta from './ButtonCta.jsx';
 
 const BULLETS = [
-  'Resposta no WhatsApp em até 1 dia útil',
+  'Resposta no WhatsApp na hora',
   'Orçamento sem enrolação',
   'Você fala com quem vai fazer o trabalho',
 ];
@@ -62,8 +62,8 @@ export default function Contact() {
               </h2>
               <p className="contact__sub">
                 Sem formulário longo, sem agendamento de "call de descoberta".
-                Chama no WhatsApp, conta seu projeto, e em até 1 dia útil
-                você recebe orçamento.
+                Chama no WhatsApp, conta seu projeto, e a gente responde
+                na hora.
               </p>
             </div>
 

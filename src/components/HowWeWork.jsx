@@ -428,7 +428,7 @@ export default function HowWeWork() {
                 style={{ '--wp-tilt': step.tilt }}
               >
                 <div className="waskee-process__icon" aria-hidden="true">
-                  <img src={step.icon} alt="" loading="lazy" />
+                  <img src={step.icon} alt="" width={1024} height={1024} loading="lazy" decoding="async" />
                 </div>
                 <span className="waskee-process__marker" aria-hidden="true" />
                 <div className="waskee-process__content">

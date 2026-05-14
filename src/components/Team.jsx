@@ -8,6 +8,8 @@ const MEMBERS = [
     title: 'Resultado',
     role: 'Resultado & Performance',
     img: '/augustus-portrait.webp',
+    imgWidth: 800,
+    imgHeight: 1000,
     initials: 'AG',
     color: '#86198f',
     bio: '4 anos como gestor de tráfego pago. Faz copys e criativos que vendem. É quem vai entender seu negócio antes de qualquer linha de código.',
@@ -17,6 +19,8 @@ const MEMBERS = [
     title: 'Código',
     role: 'Código & Segurança',
     img: '/d6426081-2df3-4abf-885e-daae113fe668.webp',
+    imgWidth: 1023,
+    imgHeight: 1537,
     initials: 'JN',
     color: '#0d9488',
     bio: 'Dev pleno com background em cibersegurança. Constrói o site, garante velocidade e mantém a infra toda protegida.',
@@ -26,6 +30,8 @@ const MEMBERS = [
     title: 'Operações',
     role: 'Automação & Operações',
     img: '/fotonova_do_guri_editada.webp',
+    imgWidth: 1920,
+    imgHeight: 3440,
     initials: 'AT',
     color: '#5b21b6',
     bio: 'Especialista em n8n. Conecta WhatsApp, planilhas e CRM pra que cada lead chegue no lugar certo no momento certo. Também é quem vai te atender na maioria dos casos.',
@@ -77,7 +83,7 @@ export default function Team() {
         </div>
 
         <div className="team__grid">
-          {MEMBERS.map(({ name, title, role, img, initials, color }, i) => (
+          {MEMBERS.map(({ name, title, role, img, imgWidth, imgHeight, initials, color }, i) => (
             <GlowCard
               key={name}
               ref={(el) => { cardsRef.current[i] = el; }}
@@ -86,7 +92,7 @@ export default function Team() {
             >
               <div className="team-card__photo-wrap">
                 {img ? (
-                  <img src={img} alt={name} className="team-card__photo" draggable="false" loading="lazy" decoding="async" />
+                  <img src={img} alt={name} className="team-card__photo" width={imgWidth} height={imgHeight} draggable="false" loading="lazy" decoding="async" />
                 ) : (
                   <div
                     className="team-card__avatar"

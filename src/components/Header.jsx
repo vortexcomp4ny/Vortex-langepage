@@ -64,7 +64,7 @@ export default function Header() {
 
         {/* Logo */}
         <a href="#topo" className="header__logo" aria-label="Vortex">
-          <img src="/vortex-logo.webp" alt="Vortex" className="header__logo-img" />
+          <img src="/vortex-logo.webp" alt="Vortex" className="header__logo-img" width={480} height={65} decoding="async" />
         </a>
 
         {/* Nav desktop */}

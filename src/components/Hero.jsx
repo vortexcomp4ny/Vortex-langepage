@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import ButtonCta from './ButtonCta.jsx';
 
@@ -8,7 +8,22 @@ export default function Hero() {
   const line2Ref = useRef(null);
   const subRef = useRef(null);
   const actionsRef = useRef(null);
+  const videoRef = useRef(null);
 
+  // Mobile: mantém só o poster estático (zero download do MP4 no first paint).
+  // Desktop: dispara o video assim que o componente monta.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    if (!isDesktop) return;
+    const v = videoRef.current;
+    if (!v) return;
+    v.load();
+    const playPromise = v.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => { /* autoplay blocked — keep poster */ });
+    }
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -54,12 +69,13 @@ export default function Hero() {
       <div className="hero__card-outer">
         <div ref={cardRef} className="hero__card">
           <video
+            ref={videoRef}
             className="hero__video"
-            autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
+            poster="/hero-poster.webp"
           >
             <source src="https://djqhpvmdlnnnspyarexn.supabase.co/storage/v1/object/public/Videos/Vortex.mp4" type="video/mp4" />
           </video>
@@ -72,6 +88,10 @@ export default function Hero() {
                 src="/logo-vortex-3d.webp"
                 alt="Vortex"
                 className="hero__badge-logo"
+                width={600}
+                height={537}
+                fetchpriority="high"
+                decoding="async"
                 draggable="false"
               />
             </div>

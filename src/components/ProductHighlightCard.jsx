@@ -16,6 +16,8 @@ const ProductHighlightCard = forwardRef(function ProductHighlightCard(
     description,
     imageSrc,
     imageAlt,
+    imageWidth,
+    imageHeight,
     tags = [],
     badge,
     className = '',
@@ -103,6 +105,8 @@ const ProductHighlightCard = forwardRef(function ProductHighlightCard(
         <motion.img
           src={imageSrc}
           alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
           loading="lazy"
           decoding="async"
           draggable="false"
