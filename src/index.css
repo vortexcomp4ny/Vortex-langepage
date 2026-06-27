@@ -2455,11 +2455,13 @@ button { font-family: inherit; cursor: none; }
   margin-bottom: 56px;
 }
 
-/* Grid de 3 cards grandes */
+/* Grid de 2 cards grandes — centralizado */
 .team__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {

@@ -5,25 +5,14 @@ import GlowCard from './GlowCard.jsx';
 const MEMBERS = [
   {
     name: 'Augustus Gangary',
-    title: 'Resultado',
-    role: 'Resultado & Performance',
+    title: 'Estratégia',
+    role: 'Resultado & Desenvolvimento',
     img: '/augustus-portrait.webp',
     imgWidth: 800,
     imgHeight: 1000,
     initials: 'AG',
     color: '#86198f',
-    bio: '4 anos como gestor de tráfego pago. Faz copys e criativos que vendem. É quem vai entender seu negócio antes de qualquer linha de código.',
-  },
-  {
-    name: 'João Neto',
-    title: 'Código',
-    role: 'Código & Segurança',
-    img: '/d6426081-2df3-4abf-885e-daae113fe668.webp',
-    imgWidth: 1023,
-    imgHeight: 1537,
-    initials: 'JN',
-    color: '#0d9488',
-    bio: 'Dev pleno com background em cibersegurança. Constrói o site, garante velocidade e mantém a infra toda protegida.',
+    bio: '4 anos como gestor de tráfego pago. Faz as copys, os criativos e conduz o desenvolvimento do seu site. É quem entende seu negócio antes de qualquer linha de código — e quem coloca ela no ar.',
   },
   {
     name: 'Andrew Torres',
@@ -77,7 +66,7 @@ export default function Team() {
             A pessoa que vai te atender é a pessoa que vai fazer.
           </h2>
           <p className="section-desc">
-            Três skills, um time só. Sem atendente que repassa o problema
+            Dois sócios, um time só. Sem atendente que repassa o problema
             adiante. Você fala com quem entrega.
           </p>
         </div>
